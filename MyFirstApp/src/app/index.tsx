@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TextInput } from 'react-native';
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedView } from '@/components/themed-view';
 import { useState } from 'react';
@@ -7,42 +7,88 @@ import { useState } from 'react';
 export default function HomeScreen() {
 
   const [userName, setUserName] = useState('');
+  const [count, setCount] = useState(0);
+  const increase = () => {
+  setCount(count + 1);
+};
+
+const decrease = () => {
+  if (count > 0) {
+    setCount(count - 1);
+  }
+};
+
+const reset = () => {
+  setCount(0);
+};
 
   return (
     <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.screen}>
+<ScrollView contentContainerStyle={styles.screen}>
 
-        <Image
-          source={require('@/assets/images/Krismarie.jpg')}
-          style={styles.photo}
-        />
+  <Image
+    source={require('@/assets/images/Krismarie.jpg')}
+    style={styles.photo}
+  />
 
-       <Text style={styles.name}>
-          Krismarie V. Castillo
-        </Text>
+  <Text style={styles.name}>
+    Krismarie V. Castillo
+  </Text>
 
-        <Text style={styles.course}>
-          MMA Student - CS126-1
-        </Text>
+  <Text style={styles.course}>
+    MMA Student - CS126-1
+  </Text>
 
-        <Text style={styles.school}>
-          Mapúa Malayan Colleges Mindanao
-        </Text>
+  <Text style={styles.school}>
+    Mapúa Malayan Colleges Mindanao
+  </Text>
 
-        <TextInput style={styles.input}
-        placeholder="Test Input Here"
-        value={userName}
-        onChangeText={setUserName}
-        />
-        <Text style={styles.greeting}>
-         {userName}
-        </Text>
+  <Text style={styles.bio}>
+    "Creating, Always"
+  </Text>
 
-        <Text style={styles.bio}>
-          "Creating, Always"
-        </Text>
 
-      </SafeAreaView>
+  <TextInput
+    style={styles.input}
+    placeholder="Test Input Here"
+    value={userName}
+    onChangeText={setUserName}
+  />
+
+  <Text style={styles.greeting}>
+  {userName}
+  </Text>
+
+  <Text style={styles.counterTitle}>
+    Counter
+  </Text>
+
+  <Text style={styles.counter}>
+    {count}
+  </Text>
+
+  <View style={styles.buttonContainer}>
+
+    <TouchableOpacity
+      style={styles.button}
+      onPress={increase}>
+      <Text style={styles.buttonText}>+</Text>
+    </TouchableOpacity>
+
+    <TouchableOpacity
+      style={styles.button}
+      onPress={decrease}>
+      <Text style={styles.buttonText}>-</Text>
+    </TouchableOpacity>
+
+    <TouchableOpacity
+      style={styles.button}
+      onPress={reset}>
+      <Text style={styles.buttonText}>Reset</Text>
+    </TouchableOpacity>
+
+  </View>
+</ScrollView>
     </ThemedView>
   );
 }
@@ -53,7 +99,23 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-  },
+    
+},
+buttonContainer: {
+  flexDirection: 'row',
+  marginTop: 10,
+},
+
+button: {
+  backgroundColor: '#007AFF',
+  padding: 10,
+  marginHorizontal: 5,
+  borderRadius: 5,
+},
+buttonText: {
+  color: '#fff',
+  fontWeight: 'bold',
+},
 
   screen: {
     flex: 1,
@@ -92,7 +154,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
 
-// I added a TextInput so the user can type their name. 03/07/2026
+
 input: {
   width: '80%',
   borderWidth: 1,
@@ -102,10 +164,23 @@ input: {
   marginTop: 20,
 },
 
-// I added a greeting text that changes based on the user's input. 03/07/2026
+
 greeting: {
   fontSize: 18,
   marginTop: 15,
   fontWeight: 'bold',
 },
+
+counter: {
+  fontSize: 24,
+  fontWeight: 'bold',
+  marginTop: 10,
+},
+
+counterTitle: {
+  fontSize: 18,
+  fontWeight: 'bold',
+  marginTop: 20,
+},
+
 });
