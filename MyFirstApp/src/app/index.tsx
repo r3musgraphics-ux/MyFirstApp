@@ -27,7 +27,26 @@ function getDevMenuHint() {
     </ThemedText>
   );
 }
+// Week 3 JavaScript Activity
 
+const myName = "Krismarie Castillo";
+const classmates = [
+  "Erick Karl",
+  "Maria Klarissa",
+  "Krystal",
+  "Kierven",
+];
+
+const greetStudent = (name: string) => {
+  return `Good day, ${name}! Welcome to Krismarie JavaScript Test 123.`;
+};
+
+console.log("===== JAVASCRIPT TEST 123 KRISMARIE =====");
+console.log("Student Name:", myName);
+
+classmates.map((student) => {
+  console.log(greetStudent(student));
+});
 export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
@@ -35,7 +54,7 @@ export default function HomeScreen() {
         <ThemedView style={styles.heroSection}>
           <AnimatedIcon />
           <ThemedText type="title" style={styles.title}>
-            &nbsp;Marie ASwang
+            &nbsp;Krismarie Castillo - Week 3 Activity
           </ThemedText>
         </ThemedView>
 
